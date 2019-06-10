@@ -1,17 +1,25 @@
-<div *ngFor="let house of houses | async"
-     class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+<div *ngIf="houses | async as houses_list; else loading">
+  <ng-container *ngIf="houses_list.length; else noItems">
+    <div *ngFor="let house of houses_list"
+         class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
 
-  <div class="uk-card-media-left uk-cover-container">
-    <img src="{{house.main_image}}" alt="" uk-cover>
-    <canvas width="600" height="300"></canvas>
-  </div>
-  <div>
-    <div class="uk-card-body uk-text-left">
-      <div class="uk-card-badge uk-label">{{house.type}}</div>
+      <div class="uk-card-media-left uk-cover-container">
+        <img src="{{house.main_image}}" alt="" uk-cover>
+        <canvas width="600" height="300"></canvas>
+      </div>
+      <div>
+        <div class="uk-card-body uk-text-left">
+          <div class="uk-card-badge uk-label">{{house.type}}</div>
 
-      <h3 class="uk-card-title">{{house.title}}</h3>
-      <span class="uk-label uk-label-success">500€</span>
-      <p>{{ (house.description.length > 200) ? (house.description | slice:0:200) + '..' : (house.description) }}</p>
+          <h3 class="uk-card-title">{{house.title}}</h3>
+          <span class="uk-label uk-label-success">500€</span>
+          <p>{{ (house.description.length > 200) ? (house.description | slice:0:200) + '..' : (house.description) }}</p>
+        </div>
+      </div>
     </div>
-  </div>
+  </ng-container>
+  <ng-template #noItems>No Items!</ng-template>
 </div>
+<ng-template #loading>
+  <facebook-content-loader></facebook-content-loader>
+</ng-template>

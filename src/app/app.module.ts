@@ -10,6 +10,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {HousesListComponent} from './components/houses-list/houses-list.component';
 import {firebaseConfig} from './config/config';
+import { ContentLoaderModule } from '@netbasal/ngx-content-loader';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {firebaseConfig} from './config/config';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    ContentLoaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
